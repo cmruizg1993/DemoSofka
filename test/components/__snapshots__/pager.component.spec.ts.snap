@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PagerComponent Debe coincidir con el snapshot' 1`] = `
+<div
+  id="root1"
+>
+  <div
+    class="row p-2"
+  >
+    <div
+      class="col"
+    >
+      <p
+        class="fs-2 fw-800 fs-2 fw-800"
+      >
+        Mostrando 5 de 0 Resultados
+      </p>
+    </div>
+    <div
+      class="col d-flex justify-content-end"
+    >
+      <div
+        class="pages"
+      >
+        <ul>
+          
+        </ul>
+        <p
+          class="text-primary fs-2 fw-800"
+        >
+          Página actual: 1
+        </p>
+      </div>
+    </div>
+    <div
+      class="col d-flex justify-content-end"
+    >
+      <app-select
+        label="Items por pág."
+      >
+        <label>
+           Items por pág.
+
+        </label>
+        
+        <select
+          class="ng-untouched ng-pristine ng-valid"
+        >
+          <option
+            value="0: Object"
+          >
+            5
+          </option>
+          <option
+            value="1: Object"
+          >
+            10
+          </option>
+          <option
+            value="2: Object"
+          >
+            20
+          </option>
+          
+        </select>
+      </app-select>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableComponent Debe coincidir con el snapshot' 1`] = `
+<div
+  id="root1"
+>
+  <div
+    class="container-fluid bg-white table-responsive"
+  >
+    <table
+      class="bg-white mt-2"
+    >
+      
+      
+    </table>
+    <div
+      class="pager bg-white mt-1"
+    >
+      <app-pager />
+    </div>
+  </div>
+  
+</div>
+`;
