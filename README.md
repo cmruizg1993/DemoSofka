@@ -6,9 +6,9 @@
 
 # Instalación
 
-Clonar el repositorio, con el comando: `git clone https://github.com/cmruizg1993/CristianRuiz.git`
+Clonar el repositorio, con el comando: `git clone https://github.com/cmruizg1993/DemoSofka.git`
 
-Abrir la carpeta del repositorio `cd ./CristianRuiz`
+Abrir la carpeta del repositorio `cd ./DemoSofka`
 
 Instalar dependencias `npm i`
 
