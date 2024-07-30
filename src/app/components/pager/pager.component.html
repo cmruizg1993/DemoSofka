@@ -16,7 +16,7 @@
         <app-select 
         [data]="[{label: '5', value: 5, isSelected: true},{label: '10', value: 10},{label: '20', value: 20}]"
         label="Items por pág."
-        (modelUpdate)="updatePageSize($event)">
+        (modelUpdate)="updatePageSize($event.value)">
         </app-select>
     </div>
 </div>

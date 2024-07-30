@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IContextMenu } from '../../interfaces/i-context-menu';
 import { IEventContextMenu } from '../../interfaces/i-event-context-menu';
+import { PagerProperties } from '../../classes/page-properties';
 
 @Component({
   selector: 'app-table',
@@ -30,7 +31,7 @@ export class TableComponent {
     return isImage ? `assets/img/${value}`: value
   }
 
-  pagerUpdate(pagerProperties: any){
+  pagerUpdate(pagerProperties: PagerProperties){
     this.pageSize = pagerProperties.pageSize;
     this.page = pagerProperties.page;
     this.tableRefresh();

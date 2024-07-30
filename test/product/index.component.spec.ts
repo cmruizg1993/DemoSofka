@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from '../../src/app/components/components.module';
 import { FormComponent } from '../../src/app/components/form/form.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { IProduct } from '../../src/app/interfaces/iproduct';
 import { environment } from '../../src/environments/environment.development';
 import { IndexComponent } from '../../src/app/product/index/index.component';
 

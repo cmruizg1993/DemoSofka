@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Type } from '@angular/compiler';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -7,11 +8,12 @@ import { FormControl } from '@angular/forms';
   styleUrl: './input.component.css'
 })
 export class InputComponent {
-  @Input() label = '';
-  @Input() disabled = false;
-  @Input() placeholder = '';
-  @Input() class = '';
+  @Input() label: string = '';
+  @Input() disabled: boolean = false;
+  @Input() placeholder: string = '';
+  @Input() class: string = '';
   @Input() formControlName?: string;
+  
   @Output() modelUpdate = new EventEmitter<any>();
   
   private privateModel: any;

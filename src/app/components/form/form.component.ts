@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IProduct } from '../../interfaces/iproduct';
 import { IFormField } from '../../interfaces/i-form-field';
 import { IFormButton } from '../../interfaces/i-form-button';
 

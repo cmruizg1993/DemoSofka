@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Page } from '../../classes/page';
+import { PagerProperties } from '../../classes/page-properties';
 
 @Component({
   selector: 'app-pager',
@@ -12,11 +14,7 @@ export class PagerComponent {
   pagerProperties = new PagerProperties();
   
   pages: Page[] = [];
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    
-  }
+
   ngAfterContentChecked(): void {
     //Called after every check of the component's or directive's content.
     //Add 'implements AfterContentChecked' to the class.
@@ -35,9 +33,9 @@ export class PagerComponent {
     this.pagerProperties.page = page.number;
     this.updatePager();
   }
-  updatePageSize(event: any){
+  updatePageSize(pageSize: number){
     this.pagerProperties.page = 1;
-    this.pagerProperties.pageSize = event.value;
+    this.pagerProperties.pageSize = pageSize;
     this.updatePager();
   }
   updatePager(){
@@ -45,11 +43,5 @@ export class PagerComponent {
   }
   
 }
-class PagerProperties{
-  page: number = 1;
-  pageSize = 5;
-}
-class Page{
-  number: number = 0;
-  isActive: boolean = false;
-}
+
+

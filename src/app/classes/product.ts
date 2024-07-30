@@ -1,5 +1,5 @@
 
-import { IProduct } from "../interfaces/iproduct";
+import { IProduct } from "../interfaces/i-product";
 
 export class Product implements IProduct{
 

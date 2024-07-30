@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, firstValueFrom, map, single } from 'rxjs';
 import { Product } from '../classes/product';
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
-import { IProduct } from '../interfaces/iproduct';
+import { IProduct } from '../interfaces/i-product';
 
 @Injectable({
   providedIn: 'root'

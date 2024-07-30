@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { ProductService } from '../../src/app/services/product.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { IProduct } from '../../src/app/interfaces/iproduct';
+import { IProduct } from '../../src/app/interfaces/i-product';
 import { environment } from '../../src/environments/environment.development';
 
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { IProduct } from '../../interfaces/iproduct';
+import { IProduct } from '../../interfaces/i-product';
 import { IFormField } from '../../interfaces/i-form-field';
 import { Product } from '../../classes/product';
 import { IFormButton } from '../../interfaces/i-form-button';
@@ -16,7 +16,7 @@ import { ProductForm } from '../../classes/product-form';
 export class CreateComponent {
   
   error = false;
-  errorName = '';
+  errorMessage = '';
   fields: IFormField[];
   buttons: IFormButton[];
   modalSettings: ModalSettings;
@@ -42,30 +42,27 @@ export class CreateComponent {
     ]
     this.modalSettings = new ModalSettings();
   }
-  createProduct(product: IProduct){
-    this.productService.createProduct(product)
-    .then(() => {
-      this.error = false;
-      this.modalSettings.cancelButton = false;
-      this.modalSettings.confirmButton = true;
+  async createProduct(product: IProduct){
+    this.error = false;
+    this.modalSettings.cancelButton = false;
+    this.modalSettings.confirmButton = true;        
+    try{
+      await this.productService.createProduct(product);
       this.modalSettings.content = `El  producto se ha creado correctamente.`;
       this.modalSettings.confirmAction = () => {
         this.router.navigate(['/']);
       }
-      this.modalSettings.open();
-    })
-    .catch(err => {
-      this.errorName = err.name;
-      this.error = true;
-      this.modalSettings.cancelButton = false;
-      this.modalSettings.confirmButton = true;
+    }catch(e: any){
+      this.errorMessage = e.message;
       this.modalSettings.content = `Hubo un error al crear el producto.`;
       this.modalSettings.confirmButtonLabel = 'Aceptar';
       this.modalSettings.confirmAction = () => {
         this.modalSettings.close();
       }
+    }finally{
       this.modalSettings.open();
-    });
+    }
+    
   }
 }
 

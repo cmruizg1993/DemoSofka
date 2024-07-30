@@ -3,7 +3,7 @@ import { IFormField } from '../../interfaces/i-form-field';
 import { IFormButton } from '../../interfaces/i-form-button';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../classes/product';
-import { IProduct } from '../../interfaces/iproduct';
+import { IProduct } from '../../interfaces/i-product';
 import { Router } from '@angular/router';
 import { ModalSettings } from '../../classes/modal-settings';
 import { ProductForm } from '../../classes/product-form';
@@ -14,7 +14,7 @@ import { ProductForm } from '../../classes/product-form';
   styleUrl: './edit.component.css'
 })
 export class EditComponent {
-  errorName = '';
+  errorMessage = '';
   error = false;
   fields: IFormField[];
   buttons: IFormButton[];
@@ -24,7 +24,8 @@ export class EditComponent {
     private router: Router
   ){
 
-    const product: any = this.router.getCurrentNavigation()?.extras.state;
+    const product: IProduct = this.router.getCurrentNavigation()?.extras.state as IProduct;
+
     if(!product)
       router.navigate(['/'])
 
@@ -43,29 +44,28 @@ export class EditComponent {
     ]
     this.modalSettings = new ModalSettings();
   }
-  updateProduct(product: IProduct){
-    this.productService.editProduct(product)
-    .then(value => {
-      this.error = false;
-      this.modalSettings.cancelButton = false;
-      this.modalSettings.confirmButton = true;
+  async updateProduct(product: IProduct){
+    
+    this.error = false;
+    this.modalSettings.cancelButton = false;
+    this.modalSettings.confirmButton = true;
+      
+    try{
+      await this.productService.editProduct(product);
       this.modalSettings.content = `El  producto se ha actualizado correctamente.`;
       this.modalSettings.confirmAction = () => {
         this.router.navigate(['/']);
       }
       this.modalSettings.open();
-    })
-    .catch(err => {
-      this.errorName = err.name;
-      this.error = true;
-      this.modalSettings.cancelButton = false;
-      this.modalSettings.confirmButton = true;
-      this.modalSettings.content = `Hubo un error al crear el producto.`;
+    }catch(e: any){
+      this.errorMessage = e.message;
+      this.modalSettings.content = `Hubo un error al actualizar el producto.`;
       this.modalSettings.confirmButtonLabel = 'Aceptar';
       this.modalSettings.confirmAction = () => {
         this.modalSettings.close();
       }
+    }finally{
       this.modalSettings.open();
-    });
+    }
   }
 }

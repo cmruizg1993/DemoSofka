@@ -9,7 +9,7 @@
     <div class="d-flex col justify-content-end">
       <app-button
         label="Agregar"
-        (onClick)="agregarProducto()"
+        (onClick)="addProducto()"
         [primary]="true"
       ></app-button>
     </div>
@@ -31,6 +31,6 @@
     <p class="text-primary fw-800 mb-2">
       {{ modalSettings.content }}
     </p>
-    <small *ngIf="error">Error: {{errorName}}</small>
+    <small *ngIf="error">Error: {{errorMessage}}</small>
   </div>
 </app-modal>
