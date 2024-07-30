@@ -7,7 +7,7 @@ export  class CustomValidators {
         return (control: AbstractControl): Observable<ValidationErrors | null> => {
             const id = (control.value as string).trim().toLowerCase();
             const response$ = productService.verificationID(id);
-            return response$.pipe(map(isExisting => (isExisting ? { idExists: true } : null)));;
+            return response$.pipe(map(isExisting => (isExisting ? { idExists: true } : null)));
         };
     }
     static productValidateDateFormat(): ValidatorFn{

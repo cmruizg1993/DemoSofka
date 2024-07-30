@@ -16,10 +16,10 @@ export abstract class FormFactory implements IForm{
     return field;
   }
   getCreationFormFields(): IFormField[] {
-    throw new Error("Method not implemented.");
+    return this.formFields;
   }
   getUpdateFormFields(): IFormField[] {
-    throw new Error("Method not implemented.");
+    return this.formFields;
   }
     
 }

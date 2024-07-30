@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { IContextMenu } from '../../interfaces/i-context-menu';
 import { IEventContextMenu } from '../../interfaces/i-event-context-menu';
 import { PagerProperties } from '../../classes/page-properties';
+import { IHeader } from '../../interfaces/i-header';
 
 @Component({
   selector: 'app-table',
@@ -11,7 +12,7 @@ import { PagerProperties } from '../../classes/page-properties';
 })
 export class TableComponent {
   @Input() data: any[] = [];
-  @Input() headers: any[] = [];
+  @Input() headers: IHeader[] = [];
   @Input() context?: IContextMenu ;
   page = 1;
   pageSize = 5;
@@ -25,7 +26,7 @@ export class TableComponent {
     //Add 'implements AfterContentChecked' to the class.
     this.tableRefresh();
   }
-  getValue(index: number, header: any){
+  getCellValue(index: number, header: IHeader){
     let value = this.view[index][`${header.key}`];
     const isImage = header.isImage;
     return isImage ? `assets/img/${value}`: value

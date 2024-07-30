@@ -73,8 +73,34 @@ describe('Product/CreateComponent', () => {
 
     const request = httpMock.expectOne(`${environment.apiUrl}/products`);
     expect( request.request.method ).toBe('POST');
-    request.flush( product );
+    request.error( product );
 
+  });
+  it(`Debe fallar al crear un producto'`,  (done) => {
+    const dateNow = new Date();
+    const dateAfterYear = new Date();
+    dateAfterYear.setFullYear(dateAfterYear.getFullYear() + 1); 
+    const id = `${Math.floor(Math.random()*999999999)}`;
+
+    const product: any = {
+      
+    }
+
+    const component = fixture.componentInstance;
+    const mockErrorResponse = { status: 400, statusText: 'Bad Request' };
+    const data = {
+      message: 'Invalid request parameters'
+    };
+    
+    component.createProduct(product).then(()=>{
+      const errorMessage = fixture.componentInstance.modalSettings.content;      
+      expect(errorMessage).toMatch('Hubo un error al crear el producto.');
+      done();
+     });
+     const request = httpMock.expectOne(`${environment.apiUrl}/products`);
+     expect( request.request.method ).toBe('POST');
+     request.flush(data, mockErrorResponse);
+     fixture.detectChanges();
   });
 
 });

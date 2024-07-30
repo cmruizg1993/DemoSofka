@@ -31,4 +31,25 @@ describe('AppComponent', () => {
   it(`Debe coincidir con el snapshot'`, () => {
     expect(compiled).toMatchSnapshot();
   });
-})
+  it(`Debe llamar a onConfirm'`, () => {
+    const confirmText = 'Confirm';
+    const cancelText = 'Cancel';
+    fixture.componentInstance.modalSettings.confirmAction = ()=> console.log(confirmText);
+    fixture.componentInstance.modalSettings.cancelAction = ()=> console.log(cancelText);
+    jest.spyOn(console, 'log');
+    fixture.componentInstance.onConfirm();
+    expect(console.log).toHaveBeenCalledWith(confirmText);
+    
+  });
+  it(`Debe llamar a onCancel'`, () => {
+    const confirmText = 'Confirm';
+    const cancelText = 'Cancel';
+    fixture.componentInstance.modalSettings.confirmAction = ()=> console.log(confirmText);
+    fixture.componentInstance.modalSettings.cancelAction = ()=> console.log(cancelText);
+    jest.spyOn(console, 'log');
+    fixture.componentInstance.onCancel();
+    expect(console.log).toHaveBeenCalledWith(cancelText);
+  })
+    
+});
+  

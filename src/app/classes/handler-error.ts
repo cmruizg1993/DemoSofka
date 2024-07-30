@@ -11,7 +11,12 @@ export class HandlerError implements IHandlerError{
                 name: errorResponse.name,
                 message: errorResponse.message
             }
-            
+            if(!!errorResponse.error?.name)
+                error.name = errorResponse.error.name;
+            if(!!errorResponse.error?.message)
+                error.message = errorResponse.error.message;
+            if(!!errorResponse.error?.stack)
+                error.stack = errorResponse.error.stack;
             return error;
         })
     }

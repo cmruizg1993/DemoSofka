@@ -50,14 +50,13 @@ export class EditComponent {
     this.modalSettings.cancelButton = false;
     this.modalSettings.confirmButton = true;
       
-    try{
+    try{      
       await this.productService.editProduct(product);
       this.modalSettings.content = `El  producto se ha actualizado correctamente.`;
-      this.modalSettings.confirmAction = () => {
-        this.router.navigate(['/']);
-      }
+      this.modalSettings.confirmAction = () => this.router.navigate(['/']);
       this.modalSettings.open();
     }catch(e: any){
+      this.error = true;
       this.errorMessage = e.message;
       this.modalSettings.content = `Hubo un error al actualizar el producto.`;
       this.modalSettings.confirmButtonLabel = 'Aceptar';

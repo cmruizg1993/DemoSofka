@@ -10,13 +10,7 @@ export class Product implements IProduct{
     date_release: string;
     date_revision: string;
 
-    constructor(
-        id = '',
-        name = '',
-        description = '',
-        logo: '',
-        date_release: '',
-        date_revision: ''
+    constructor( id: string , name: string , description: string, logo: string, date_release: string, date_revision: string
     ) {
         this.id = id;
         this.name = name;

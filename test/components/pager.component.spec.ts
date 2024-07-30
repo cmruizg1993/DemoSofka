@@ -30,7 +30,19 @@ describe('PagerComponent', () => {
     const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
-  it(`Debe coincidir con el snapshot'`, () => {
+  it(`Debe coincidir con el snapshot`, () => {
     expect(compiled).toMatchSnapshot();
+  });
+  it(`Debe calcular el número de páginas`, () => {
+    fixture.componentInstance.dataLength = 11;
+    fixture.detectChanges();
+    expect(fixture.componentInstance.pages.length).toEqual(3);
+  });
+  it(`Debe actualizar el número de página`, () => {
+    fixture.componentInstance.dataLength = 11;
+    fixture.detectChanges();
+    fixture.componentInstance.updatePage(fixture.componentInstance.pages[1]);
+    fixture.detectChanges();    
+    expect(fixture.componentInstance.pagerProperties.page).toEqual(2);
   });
 })

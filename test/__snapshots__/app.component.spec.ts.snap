@@ -14,7 +14,7 @@ exports[`AppComponent Debe coincidir con el snapshot' 1`] = `
     </div>
   </app-loader>
   <div
-    class="container-fluid bg-secondary d-none"
+    class="container-fluid bg-secondary"
   >
     <app-header>
       <div

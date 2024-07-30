@@ -43,22 +43,20 @@ export class CreateComponent {
     this.modalSettings = new ModalSettings();
   }
   async createProduct(product: IProduct){
-    this.error = false;
+    
     this.modalSettings.cancelButton = false;
     this.modalSettings.confirmButton = true;        
     try{
+      this.error = false;
       await this.productService.createProduct(product);
       this.modalSettings.content = `El  producto se ha creado correctamente.`;
-      this.modalSettings.confirmAction = () => {
-        this.router.navigate(['/']);
-      }
+      this.modalSettings.confirmAction = () => this.router.navigate(['/']);
     }catch(e: any){
+      this.error = true;
       this.errorMessage = e.message;
       this.modalSettings.content = `Hubo un error al crear el producto.`;
       this.modalSettings.confirmButtonLabel = 'Aceptar';
-      this.modalSettings.confirmAction = () => {
-        this.modalSettings.close();
-      }
+      this.modalSettings.confirmAction = () => this.modalSettings.close();
     }finally{
       this.modalSettings.open();
     }

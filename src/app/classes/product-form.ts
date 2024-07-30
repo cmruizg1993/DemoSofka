@@ -80,10 +80,8 @@ export class ProductForm extends FormFactory{
               onValidation: (value: string, form: FormGroup) =>
                 { 
                   const control = form.get('date_revision');
-                  if(control){
-                    const releaseDate = value.split('-');
-                    control.setValue(`${Number(releaseDate[0])+1}-${releaseDate[1]}-${releaseDate[2]}`);
-                  }            
+                  const releaseDate = value.split('-');
+                  control?.setValue(`${Number(releaseDate[0])+1}-${releaseDate[1]}-${releaseDate[2]}`);          
                 }
             },
             {

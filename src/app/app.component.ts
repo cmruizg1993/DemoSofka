@@ -18,9 +18,8 @@ export class AppComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.subscription = this.loaderService.loaderStatus.subscribe(state => this.loading = state);
-    setTimeout(()=>{
-      this.loaderService.currentStatus();
-    }, 0)
+    this.loaderService.currentStatus();
+    
   }
 
 }

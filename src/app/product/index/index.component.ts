@@ -32,11 +32,11 @@ export class IndexComponent {
       items: [
         {
           label: 'Editar',
-          action: this.updateProduct
+          action: (product: IProduct)=> this.updateProduct(product)
         },
         {
           label: 'Eliminar',
-          action: this.deleteProduct
+          action: (product: IProduct) => this.deleteProduct(product)
         }
       ]
     }
@@ -57,28 +57,20 @@ export class IndexComponent {
       this.modalSettings.cancelButton = false;
       this.modalSettings.confirmButton = true;
       this.modalSettings.content = `No se pudo obtener los datos del servidor, por favor inténtalo más tarde.`;
-      this.modalSettings.confirmAction = () => {
-        this.modalSettings.close();
-      }
+      this.modalSettings.confirmAction = () =>  this.modalSettings.close();      
       this.modalSettings.open();
     }
   }
   onFilterUpdate(event: string){
-    //console.log('Filter updated: ', event);
-    this.filteredProducts = this.products.filter( p =>
-      p.id.toUpperCase().indexOf(event.toUpperCase()) >= 0||
-      p.name.toUpperCase().indexOf(event.toUpperCase()) >= 0 ||
-      p.description.toUpperCase().indexOf(event.toUpperCase()) >= 0||
-       p.date_release.toUpperCase().indexOf(event.toUpperCase()) >= 0 ||
-       p.date_revision.toUpperCase().indexOf(event.toUpperCase()) >= 0
-      );
-    //console.log(this.filteredProducts)
+    const parameter = event.toUpperCase();
+    this.filteredProducts = this.products
+    .filter( p => p.id.toUpperCase().indexOf(parameter) >= 0|| p.name.toUpperCase().indexOf(parameter) >= 0 ||p.description.toUpperCase().indexOf(parameter) >= 0 || p.date_release.toUpperCase().indexOf(parameter) >= 0 || p.date_revision.toUpperCase().indexOf(parameter) >= 0 );
   }
   addProduct(){
     this.router.navigate(['/create']);
   }
   updateProduct(data: IProduct): void{
-    this.router.navigateByUrl('/edit', { state: data });
+    this.router.navigate(['/edit'], { state: data });
   }
   deleteProduct(data: IProduct){
     this.error = false;

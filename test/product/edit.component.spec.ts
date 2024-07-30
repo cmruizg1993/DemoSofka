@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from '../../src/app/components/components.module';
 import { FormComponent } from '../../src/app/components/form/form.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { IProduct } from '../../src/app/interfaces/iproduct';
 import { environment } from '../../src/environments/environment.development';
 import { EditComponent } from '../../src/app/product/edit/edit.component';
 import { Router } from '@angular/router';
@@ -118,6 +117,77 @@ describe('Product/EditComponent', () => {
     request.flush( product );
     
   });
+  it(`Debe fallar al editar un producto'`, (done) => {
+
+    const product: any = {
+      id: '1'
+    }
+
+    const component = fixture.componentInstance;
+
+    component.updateProduct(product).then(()=>{
+      let errResponse = component.modalSettings.content;
+      expect(errResponse).toMatch('Hubo un error al actualizar el producto.');
+      done();
+    });
+    const mockErrorResponse = { status: 400, statusText: 'Bad Request' };
+    const data = 'Invalid request parameters';
+    const request = httpMock.expectOne(`${environment.apiUrl}/products/${product.id}`);
+    expect( request.request.method ).toBe('PUT');
+    request.flush(data, mockErrorResponse);
+    fixture.detectChanges();
+    
+  });
+
+});
+
+describe('Product/EditComponent', () => {
+  let service: ProductService;
+  let fixture: ComponentFixture<EditComponent>;
+  let compiled: HTMLElement;
+  let httpMock: HttpTestingController;
+  let router: Router;
+
+  beforeEach(async () => {
+    
+
+    await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([
+          {
+            path: 'edit',
+            component: EditComponent
+          }
+        ]),
+        HttpClientTestingModule, FormsModule, ReactiveFormsModule
+      ],
+      declarations: [
+        EditComponent, FormComponent, ButtonComponent, ModalComponent
+      ],
+      providers:[
+        ProductService,
+      ]
+    }).compileComponents();
+    
+    router = TestBed.inject(Router);
+
+    //jest.spyOn(router, "getCurrentNavigation").mockReturnValueOnce({ extras: { state: product } } as any);    
+  });
+
+  it('Fields deben ser undefined', () => {
+    let error = null;
+    try{
+      service = TestBed.inject(ProductService);
+      service.urlBase = environment.apiUrl;
+      httpMock = TestBed.inject(HttpTestingController);
+      fixture = TestBed.createComponent(EditComponent);      
+      fixture.detectChanges();
+    }catch(err){
+      error = err
+    }
+    expect(error).toBeTruthy();
+  });
+
 
 });
 
