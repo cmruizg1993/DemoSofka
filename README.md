@@ -16,6 +16,12 @@ Instalar dependencias `npm i`
 
 Ejecutar el comando `npm run start` 
 
+## Docker
+
+`docker build -t demo-sofka-image .` 
+
+`docker run --name demo-sofka-container -p <HostPort>:8080 -d demo-sofka-image`
+
 
 ## Pruebas Unitarias
 
